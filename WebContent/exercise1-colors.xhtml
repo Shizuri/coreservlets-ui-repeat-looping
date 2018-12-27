@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+<title>Colors</title>
+<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+<h1 class="title">Colors</h1>
+
+Exercise 1. List colors.
+<ul>
+	<ui:repeat var="color" value="#{colors.colors}">
+		<li>#{color}</li>
+	</ui:repeat>
+</ul>
+Exercise 2. List first name than last name.
+<ul>
+	<ui:repeat var="name" value="#{colors.friends}">
+		<li>#{name.firstName} #{name.lastName}</li>
+	</ui:repeat>
+</ul>
+Exercise 3. List colors without first and last color.<br/>
+<b>Exercise can't be done with modification of UI since two checks are needed from varStatus</b><br/>
+Check <a href="http://apps.jsf2.com/looping-exercises/">http://apps.jsf2.com/looping-exercises/</a> for confirmation.
+<ul>
+	<ui:repeat var="color" value="#{colors.colors}" varStatus="status">
+		<li>
+		<ui:fragment rendered="#{!status.first}">
+			#{color}
+		</ui:fragment>
+		<ui:fragment rendered="#{!status.last}">
+			#{color}
+		</ui:fragment>
+		</li>
+	</ui:repeat>
+</ul>
+Exercise 4. Make a table for quarterly grades.<br/>
+<table border="1">
+	<tr>
+		<ui:repeat var="g" value="#{gcon.gradesList[0].grades}" varStatus="status"> <!-- Very proud of this code! The gcon.gradesList[0].grades part was hard-->
+			<th><h:outputText value="Exam #{status.index + 1}"/></th> 
+		</ui:repeat>
+	</tr>
+	<ui:repeat var="qgList" value="#{gcon.gradesList}">
+		<tr>
+			<ui:repeat var="g" value="#{qgList.grades}">
+				<td>#{g}</td>
+			</ui:repeat>
+		</tr>
+	</ui:repeat>
+</table>
+
+</h:body></html>
