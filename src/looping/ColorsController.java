@@ -2,7 +2,7 @@ package looping;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//test
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name="colors")
